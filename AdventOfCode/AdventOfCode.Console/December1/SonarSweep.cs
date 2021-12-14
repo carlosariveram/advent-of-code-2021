@@ -1,15 +1,16 @@
-﻿using System;
+﻿using AdventOfCode.Console.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AdventOfCode.Console.DecemberFirst;
+namespace AdventOfCode.Console.December1;
 
 internal class SonarSweep
 {
-    private static string GetSonarSweepInputFilePath() => Path.Combine(Directory.GetCurrentDirectory(), "Resources", "SonarSweepInput.txt");
-
+    private const string FileName = "SonarSweepInput.txt";
+    
     private bool ShouldIncrementSonarCounter((int? previousValue, int totalIncrements) previousAccumulatedValue, string newValue) => previousAccumulatedValue.previousValue.HasValue 
         && int.Parse(newValue) > previousAccumulatedValue.Item1.Value;
 
@@ -72,8 +73,7 @@ internal class SonarSweep
 
     private string[] GetMeasurements()
     {
-        var filePath = GetSonarSweepInputFilePath();
-        var measurements = File.ReadAllLines(filePath);
+        var measurements = FileHelper.GetInputFromFile(FileName);
         return measurements;
     }
 
